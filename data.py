@@ -44,20 +44,14 @@ for line in f:
 
 	if analysis=="closed":
 		try:
-			if entry[4]==0:
-				print entry[1]
-				runningTotal += int(entry[2])
-				runningPaid += int(entry[3])
-				runningBalance += int(entry[4])
+			if int(entry[4])==0:
+				runningTotal,runningPaid,runningBalance=printnCalc(entry,runningTotal,runningPaid,runningBalance)
 		except:
 			pass
 	elif analysis=="pending":
 		try:
-			if entry[3]==0:
-				print entry[1] 
-				runningTotal += int(entry[2])
-				runningPaid += int(entry[3])
-				runningBalance += int(entry[4])
+			if int(entry[3])==0:
+				runningTotal,runningPaid,runningBalance=printnCalc(entry,runningTotal,runningPaid,runningBalance)
 		except:
 			pass
 	elif analysis=="open":
