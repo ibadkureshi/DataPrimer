@@ -1,5 +1,14 @@
 import sys
 
+def printnCalc(record,newTotal,newPaid,newBalance):
+	print record[1] + " " + record[2] + " " + record[3] + " " + record[4] + " "
+	newTotal += int(record[2])
+	newPaid += int(record[3])
+	newBalance += int(record[4])
+	return newTotal,newPaid,newBalance
+
+
+#### Main Program
 f=open("data.csv","r")
 
 
@@ -33,14 +42,44 @@ for line in f:
 	line=line.strip('\n').strip('\r')
 	entry=line.split(',')
 
-	if entry[5]==analysis:
-		print entry[1] + " " + entry[2] + " " + entry[3] + " " + entry[4] + " "
-		runningTotal += int(entry[2])
-		runningPaid += int(entry[3])
-		runningBalance += int(entry[4])
+	if analysis=="closed":
+		try:
+			if entry[4]==0:
+				print entry[1]
+				runningTotal += int(entry[2])
+				runningPaid += int(entry[3])
+				runningBalance += int(entry[4])
+		except:
+			pass
+	elif analysis=="pending":
+		try:
+			if entry[3]==0:
+				print entry[1] 
+				runningTotal += int(entry[2])
+				runningPaid += int(entry[3])
+				runningBalance += int(entry[4])
+		except:
+			pass
+	elif analysis=="open":
+		try:
+			if (int(entry[2])>int(entry[3])) and (int(entry[3])!=0):
+				runningTotal,runningPaid,runningBalance=printnCalc(entry,runningTotal,runningPaid,runningBalance)
+		except:
+			pass
+
+print "==================="
+
+	#if entry[5]==analysis:
+	#	print entry[1] + " " + entry[2] + " " + entry[3] + " " + entry[4] + " "
+	#	runningTotal += int(entry[2])
+	#	runningPaid += int(entry[3])
+	#	runningBalance += int(entry[4])
 
 print analysis + " Total = " + str(runningTotal)
 print analysis + " Paid = " + str(runningPaid)	
 print analysis + " Balance = " + str(runningBalance)
 
 f.close
+
+
+
