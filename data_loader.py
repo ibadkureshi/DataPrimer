@@ -8,14 +8,20 @@ db=MySQLdb.connect(host="localhost",user="root",passwd="password",db="salesi")
 # you execute all the queries you need
 cur=db.cursor()
 
-cur.execute("SELECT * FROM info")
-
-for row in cur.fetchall():
-	print row
-
 f=open("data.csv","r")
 
 for line in f:
-	line=line.strip('\n').strip('\r')
-	entry=line.split(',')
-	print entry
+	if line.startswith('date'):
+		pass
+	else:
+		line=line.strip('\n').strip('\r')
+		entry=line.split(',')
+		print entry
+		
+		query="INSERT INTO transaction(date,name,cost,paid,balance,status) VALUES ('"+entry[0]+"','"+entry[1]+"','"+entry[2]+"','"+entry[3]+"','"+entry[4]+"','"+entry[5]+"')"
+		
+		print query
+
+		cur.execute(query)
+		db.commit()
+
