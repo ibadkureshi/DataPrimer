@@ -1,0 +1,218 @@
+
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.68 (7238) x86_64-apple-darwin13.4.0]
+
+> pwd
+Error: object 'pwd' not found
+> getwd
+function () 
+.Internal(getwd())
+<bytecode: 0x7fb9e94c4c30>
+<environment: namespace:base>
+> getwd()
+[1] "/Users/ibadkureshi"
+> setwd("/Users/ibadkureshi/Desktop/DataPrimer/Dataprimer")
+> read.csv(file="data.csv",header=TRUE)
+        date client   cost   paid balance  status
+1 01/01/2015      A 100000 100000       0  closed
+2 03/03/2015      B  80000  80000       0  closed
+3 25/05/2015      C  90000  75000   15000    open
+4 10/09/2015      D  55000  35000   20000    open
+5 12/12/2016      E 125000  25000  100000    open
+6 01/01/2016      F  75000      0   75000 pending
+7 28/02/2016      G  89000      0   89000 pending
+8 28/07/2016      H  53000  50000    3000    open
+9 15/07/2016      I  20000  20000       0  closed
+> read.csv(file="data.csv",header=FLASE)
+Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
+  object 'FLASE' not found
+> read.csv(file="data.csv",header=FALSE)
+           V1     V2     V3     V4      V5      V6
+1        date client   cost   paid balance  status
+2  01/01/2015      A 100000 100000       0  closed
+3  03/03/2015      B  80000  80000       0  closed
+4  25/05/2015      C  90000  75000   15000    open
+5  10/09/2015      D  55000  35000   20000    open
+6  12/12/2016      E 125000  25000  100000    open
+7  01/01/2016      F  75000      0   75000 pending
+8  28/02/2016      G  89000      0   89000 pending
+9  28/07/2016      H  53000  50000    3000    open
+10 15/07/2016      I  20000  20000       0  closed
+> read.csv(file="data.csv",header=TRUE)
+        date client   cost   paid balance  status
+1 01/01/2015      A 100000 100000       0  closed
+2 03/03/2015      B  80000  80000       0  closed
+3 25/05/2015      C  90000  75000   15000    open
+4 10/09/2015      D  55000  35000   20000    open
+5 12/12/2016      E 125000  25000  100000    open
+6 01/01/2016      F  75000      0   75000 pending
+7 28/02/2016      G  89000      0   89000 pending
+8 28/07/2016      H  53000  50000    3000    open
+9 15/07/2016      I  20000  20000       0  closed
+> weight_kg <- 55
+> weight_kg
+[1] 55
+> weight_lb = 100
+> weight_kg*2.2
+[1] 121
+> 5*2.2
+[1] 11
+> weight_kg*2.2
+[1] 121
+> weight_lb <- weight_kg * 2.2
+> weight_lb
+[1] 121
+> dataFile <- read.csv(file="data.csv",header=TRUE)
+> head(dataFile)
+        date client   cost   paid balance  status
+1 01/01/2015      A 100000 100000       0  closed
+2 03/03/2015      B  80000  80000       0  closed
+3 25/05/2015      C  90000  75000   15000    open
+4 10/09/2015      D  55000  35000   20000    open
+5 12/12/2016      E 125000  25000  100000    open
+6 01/01/2016      F  75000      0   75000 pending
+> class(dataFile)
+[1] "data.frame"
+> dim(dataFile)
+[1] 9 6
+> dataFile[2,2]
+[1] B
+Levels: A B C D E F G H I
+> dataFile[5,3]
+[1] 125000
+> dataFile(1:4,1:7)
+Error: could not find function "dataFile"
+> dataFile[1:4,1:7]
+Error in `[.data.frame`(dataFile, 1:4, 1:7) : undefined columns selected
+> dataFile[1:2,1:4]
+        date client   cost   paid
+1 01/01/2015      A 100000 100000
+2 03/03/2015      B  80000  80000
+> dataFile[1:2,2:5]
+  client   cost   paid balance
+1      A 100000 100000       0
+2      B  80000  80000       0
+> dataFile[1,]
+        date client   cost   paid balance status
+1 01/01/2015      A 100000 100000       0 closed
+> dataFile[7,]
+        date client  cost paid balance  status
+7 28/02/2016      G 89000    0   89000 pending
+> dataFile[,5]
+[1]      0      0  15000  20000 100000  75000  89000   3000      0
+> dataFile[,balance]
+Error in `[.data.frame`(dataFile, , balance) : object 'balance' not found
+> dataFile[,"balance"]
+[1]      0      0  15000  20000 100000  75000  89000   3000      0
+> max(dataFile[,"cost"])
+[1] 125000
+> min(dataFile[,"cost"])
+[1] 20000
+> mean(dataFile[,"cost"])
+[1] 76333.33
+> ave(dataFile[,"cost"])
+[1] 76333.33 76333.33 76333.33 76333.33 76333.33 76333.33 76333.33
+[8] 76333.33 76333.33
+> dataFile[,"cost"]
+[1] 100000  80000  90000  55000 125000  75000  89000  53000  20000
+> median(dataFile[,"cost"])
+[1] 80000
+> sd(dataFile[,"cost"])
+[1] 30545.05
+> con <- dbConnect(MySQL(),
++         user="root", password="password",
++         dbname="salesi", host="localhost")
+Error: could not find function "dbConnect"
+> library("RMySQL");
+Loading required package: DBI
+> require("RMySQL");
+> con <- dbConnect(MySQL(), user="root", password="password", dbname="salesi", host="localhost")
+> on.exit(dbDisconnect(con))
+> dbSendQuery(con,"select * from info;")
+<MySQLResult:0,0,0>
+> rs <- dbSendQuery(con,"select * from info;")
+Error in .local(conn, statement, ...) : 
+  connection with pending rows, close resultSet before continuing
+> dbDisconnect(con)
+[1] TRUE
+Warning message:
+Closing open result sets 
+> con <- dbConnect(MySQL(), user="root", password="password", dbname="salesi", host="localhost")
+> rs <- dbSendQuery(con,"select * from info;")
+> dataSQL <- fetch(rs)
+> dataSQL
+  name        tele           address
+1    A 01913340001 Durham University
+2    B 01913340002 Durham University
+3    C 01913340003 Durham University
+4    D 01913340004 Durham University
+5    E 01913340005 Durham University
+6    F 01913340006 Durham University
+7    G 01913340007 Durham University
+8    H 01913340008 Durham University
+9    I 01913340009 Durham University
+> dbClearResult(dbListResults(con))
+Error in (function (classes, fdef, mtable)  : 
+  unable to find an inherited method for function ‘dbClearResult’ for signature ‘"list"’
+> dbClearResult(dbListResults(con)[[1]])
+[1] TRUE
+> rs <- dbSendQuery(con,"select * from transaction;")
+> dataSQL <- fetch(rs)
+> dataSQL
+  tID name   cost   paid balance  status       date
+1  24    A 100000 100000       0  closed 01/01/2015
+2  25    B  80000  80000       0  closed 03/03/2015
+3  26    C  90000  75000   15000    open 25/05/2015
+4  27    D  55000  35000   20000    open 10/09/2015
+5  28    E 125000  25000  100000    open 12/12/2016
+6  29    F  75000      0   75000 pending 01/01/2016
+7  30    G  89000      0   89000 pending 28/02/2016
+8  31    H  53000  50000    3000    open 28/07/2016
+9  32    I  20000  20000       0  closed 15/07/2016
+> dataFile
+        date client   cost   paid balance  status
+1 01/01/2015      A 100000 100000       0  closed
+2 03/03/2015      B  80000  80000       0  closed
+3 25/05/2015      C  90000  75000   15000    open
+4 10/09/2015      D  55000  35000   20000    open
+5 12/12/2016      E 125000  25000  100000    open
+6 01/01/2016      F  75000      0   75000 pending
+7 28/02/2016      G  89000      0   89000 pending
+8 28/07/2016      H  53000  50000    3000    open
+9 15/07/2016      I  20000  20000       0  closed
+> plot(data[,"cost"])
+Error in data[, "cost"] : object of type 'closure' is not subsettable
+> plot(data[,"cost"],type="l",col="red")
+Error in data[, "cost"] : object of type 'closure' is not subsettable
+> plot(dataSQL[,"cost"])
+> plot(dataSQL[,"cost"],type="l",col="red")
+> plot(dataSQL[,"paid"],type="l",col="red")
+> line(dataSQL[,"balance"], type="l",col="green")
+Error in line(dataSQL[, "balance"], type = "l", col = "green") : 
+  unused arguments (type = "l", col = "green")
+> line(dataSQL[,"balance"], col="green")
+Error in line(dataSQL[, "balance"], col = "green") : 
+  unused argument (col = "green")
+> lines(dataSQL[,"balance"], col="green")
+> 
+> 
+> plot(dataSQL[,"paid"],type="l",col="red")
+> lines(dataSQL[,"balance"], col="green")
+> 
